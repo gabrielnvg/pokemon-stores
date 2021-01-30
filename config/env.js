@@ -92,7 +92,9 @@ function getClientEnvironment(publicUrl) {
         // which is why it's disabled by default.
         // It is defined here so it is available in the webpackHotDevClient.
         FAST_REFRESH: process.env.FAST_REFRESH !== 'false',
-        PRIMARY_COLOR: store.color,
+        // Store variables
+        STORE: { ...store },
+        THEME_COLOR: store.color,
       },
     );
   // Stringify all values so we can feed into webpack DefinePlugin
