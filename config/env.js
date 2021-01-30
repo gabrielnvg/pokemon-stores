@@ -95,6 +95,7 @@ function getClientEnvironment(publicUrl) {
         // Store variables
         STORE: { ...store },
         THEME_COLOR: store.color,
+        DESCRIPTION: store.description,
       },
     );
   // Stringify all values so we can feed into webpack DefinePlugin

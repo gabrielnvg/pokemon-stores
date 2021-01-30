@@ -1,5 +1,6 @@
 {
   "name": "Fire",
+  "description": "Fire type Pokémon store.",
   "color": "#e25822",
   "endpointTypeId": 10
 }

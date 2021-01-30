@@ -1,5 +1,6 @@
 {
   "name": "Grass",
+  "description": "Grass type Pokémon store.",
   "color": "#00e676",
   "endpointTypeId": 12
 }
