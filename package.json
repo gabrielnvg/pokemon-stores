@@ -72,10 +72,10 @@
     "workbox-webpack-plugin": "5.1.4"
   },
   "scripts": {
-    "start": "node scripts/start.js --grass",
     "start:grass": "node scripts/start.js --grass",
     "start:fire": "node scripts/start.js --fire",
     "start:water": "node scripts/start.js --water",
+    "start": "npm run start:grass",
     "build:grass": "node scripts/build.js --grass",
     "build:fire": "node scripts/build.js --fire",
     "build:water": "node scripts/build.js --water",
