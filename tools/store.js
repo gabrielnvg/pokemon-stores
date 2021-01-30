@@ -1,10 +1,12 @@
 const flagName = process.argv[2].substring(2);
 const type = flagName;
-const store = require(`./stores/${type}.js`);
+const store = require(`./stores/${type}.json`);
+
+const jsonUrlPrefix = 'https://pokeapi.co/api/v2/';
+const jsonProductTypePath = 'type/';
 
 module.exports = {
   type,
-  name: store.APP_NAME,
-  color: store.PRIMARY_COLOR,
-  jsonProductsTypeId: store.JSON_PRODUCTS_TYPE_ID,
+  jsonUrl: jsonUrlPrefix.concat(jsonProductTypePath, store.jsonProductTypeId, '/'),
+  ...store,
 };
