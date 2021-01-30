@@ -94,8 +94,8 @@ function getClientEnvironment(publicUrl) {
         FAST_REFRESH: process.env.FAST_REFRESH !== 'false',
         // Store variables
         STORE: { ...store },
-        THEME_COLOR: store.color,
-        DESCRIPTION: store.description,
+        STORE_THEME_COLOR: store.color,
+        STORE_DESCRIPTION: store.description,
       },
     );
   // Stringify all values so we can feed into webpack DefinePlugin
