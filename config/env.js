@@ -94,8 +94,9 @@ function getClientEnvironment(publicUrl) {
         FAST_REFRESH: process.env.FAST_REFRESH !== 'false',
         // Store variables
         STORE: { ...store },
-        STORE_THEME_COLOR: store.color,
+        STORE_TITLE: `Pokémon Store - ${store.name}`,
         STORE_DESCRIPTION: store.description,
+        STORE_THEME_COLOR: store.color,
       },
     );
   // Stringify all values so we can feed into webpack DefinePlugin
