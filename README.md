@@ -1,6 +1,18 @@
 ## Description
 A React app that shows multiple products for the user to choose and stores them in a shopping cart. It builds different apps, depending of the flag used on the build script.
 
+## Demo
+- ### Grass type store
+  https://gabrielnvg-pokemon-store-grass.surge.sh
+  
+- ### Fire type store
+  https://gabrielnvg-pokemon-store-fire.surge.sh
+
+- ### Water type store
+  https://gabrielnvg-pokemon-store-water.surge.sh
+
+---
+
 ## Dependencies
 - [Node](https://nodejs.org/en/) 12.15.0
 - [npm](https://www.npmjs.com/get-npm) 6.13.4
