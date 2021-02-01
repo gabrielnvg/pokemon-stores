@@ -1,20 +1,12 @@
-@import '../../assets/scss/partials/imports';
-
 .fetch-error {
+  margin-top: 25px;
   font-size: 17px;
   line-height: 22px;
-
-  @media screen and (min-width: $breakpoint-lg) {
-    margin-top: 20px;
-  }
+  text-align: center;
 
   .text-row{
     &:not(:first-of-type) {
-      margin-top: 15px;
-
-      @media screen and (min-width: $breakpoint-lg) {
-        margin-top: 20px;
-      }
+      margin-top: 10px;
     }
   }
 }
