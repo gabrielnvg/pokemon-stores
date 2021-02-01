@@ -5,6 +5,7 @@ import { fetchProducts } from './redux/modules/products';
 import MainContainer from './components/MainContainer/MainContainer';
 import FetchError from './components/FetchError/FetchError';
 import FetchLoading from './components/FetchLoading/FetchLoading';
+import ProductsCatalog from './components/ProductsCatalog/ProductsCatalog';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ function App() {
       )}
 
       {!store.fetchStatus.isLoading && !store.fetchStatus.hasError && (
-        <p>{products[0].name}</p>
+        <ProductsCatalog products={products} />
       )}
     </MainContainer>
   );

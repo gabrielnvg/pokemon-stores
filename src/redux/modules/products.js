@@ -64,14 +64,20 @@ export const fetchProducts = () => (dispatch) => {
     setProducts([
       {
         name: 'Product Name 1',
+        price: 19.45,
+        mainImageUrl: 'a',
+        thumbImageUrl: 'b'
       },
       {
         name: 'Product Name 2',
+        price: 6.23,
+        mainImageUrl: 'c',
+        thumbImageUrl: 'd'
       },
     ]),
   );
 
-  // dispatch(setFetchLoading(false));
+  dispatch(setFetchLoading(false));
 };
 
 export default reducer;
