@@ -2,10 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './ProductsCatalog.module.scss';
 
+import ProductCard from './ProductCard/ProductCard';
+
 function ProductsCatalog({ products }) {
   return (
     <div className={styles['products-catalog']}>
-      <p>{products[0].name}</p>
+      {products.map((product, i) => (
+        <ProductCard key={`product-${i + 1}`} product={product} />
+      ))}
     </div>
   );
 }
