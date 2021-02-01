@@ -60,8 +60,6 @@ export const setProducts = (products) => ({
 });
 
 export const fetchProducts = () => (dispatch) => {
-  dispatch(setFetchLoading(true));
-
   dispatch(
     setProducts([
       {
@@ -73,7 +71,7 @@ export const fetchProducts = () => (dispatch) => {
     ]),
   );
 
-  dispatch(setFetchLoading(false));
+  // dispatch(setFetchLoading(false));
 };
 
 export default reducer;
