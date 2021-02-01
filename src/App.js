@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+import MainContainer from './components/MainContainer/MainContainer';
+
 import { fetchProducts } from './redux/modules/products';
 
 function App() {
@@ -11,12 +14,9 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>{process.env.STORE.name}</p>
-        <p>{products[0]?.name}</p>
-      </header>
-    </div>
+    <MainContainer>
+      <p>{products[0]?.name}</p>
+    </MainContainer>
   );
 }
 
