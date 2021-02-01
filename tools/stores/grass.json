@@ -2,5 +2,7 @@
   "name": "Grass",
   "description": "Grass type Pokémon store.",
   "color": "#78C850",
+  "colorDark": "#4E8234",
+  "colorLight": "#A7DB8D",
   "endpointTypeId": 12
 }

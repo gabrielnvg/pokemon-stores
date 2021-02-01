@@ -2,5 +2,7 @@
   "name": "Fire",
   "description": "Fire type Pokémon store.",
   "color": "#F08030",
+  "colorDark": "#9C531F",
+  "colorLight": "#F5AC78",
   "endpointTypeId": 10
 }

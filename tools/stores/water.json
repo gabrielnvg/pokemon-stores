@@ -2,5 +2,7 @@
   "name": "Water",
   "description": "Water type Pokémon store.",
   "color": "#6890F0",
+  "colorDark": "#445E9C",
+  "colorLight": "#9DB7F5",
   "endpointTypeId": 11
 }
