@@ -1,10 +1,14 @@
+@import '../../assets/scss/partials/imports';
+
 .fetch-error {
   margin-top: 25px;
-  font-size: 17px;
-  line-height: 22px;
+  font-family: $font-primary;
+  font-size: $font-primary-size;
+  line-height: $font-primary-line-height;
+  color: $color-text;
   text-align: center;
 
-  .text-row{
+  .text-row {
     &:not(:first-of-type) {
       margin-top: 10px;
     }

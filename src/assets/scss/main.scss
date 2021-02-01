@@ -1,12 +1,10 @@
 @import 'partials/imports';
 
 body {
-  font-family: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-    'Helvetica Neue', sans-serif;
-  font-size: 18px;
-  line-height: 24px;
-  color: #202020;
+  font-family: $font-primary;
+  font-size: $font-primary-size;
+  line-height: $font-primary-line-height;
+  color: $color-text;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

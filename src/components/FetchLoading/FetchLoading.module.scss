@@ -1,6 +1,10 @@
+@import '../../assets/scss/partials/imports';
+
 .fetch-loading {
   margin-top: 25px;
-  font-size: 17px;
-  line-height: 22px;
+  font-family: $font-primary;
+  font-size: $font-primary-size;
+  line-height: $font-primary-line-height;
+  color: $color-text;
   text-align: center;
 }
