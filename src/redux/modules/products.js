@@ -1,6 +1,8 @@
-// import fetchWithTimeout from '../../assets/js/utils/fetchWithTimeout';
+import fetchWithTimeout from '../../assets/js/utils/fetchWithTimeout';
+import generateRandomPrice from '../../assets/js/utils/generateRandomPrice';
+import getLastUrlPath from '../../assets/js/utils/getLastUrlPath';
 
-// const { endpoint } = process.env.STORE;
+const { endpoint } = process.env.STORE;
 
 const types = {
   SET_FETCH_LOADING: 'products/SET_FETCH_LOADING',
@@ -60,24 +62,35 @@ export const setProducts = (products) => ({
 });
 
 export const fetchProducts = () => (dispatch) => {
-  dispatch(
-    setProducts([
-      {
-        name: 'Product Name 1',
-        price: 19.45,
-        mainImageUrl: 'a',
-        thumbImageUrl: 'b'
-      },
-      {
-        name: 'Product Name 2',
-        price: 6.23,
-        mainImageUrl: 'c',
-        thumbImageUrl: 'd'
-      },
-    ]),
-  );
+  fetchWithTimeout({
+    url: endpoint,
+    timeout: 10000,
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      const products = json.pokemon;
 
-  dispatch(setFetchLoading(false));
+      dispatch(
+        setProducts(
+          products.map((product) => {
+            const { pokemon } = product;
+            const pokemonId = getLastUrlPath(pokemon.url);
+
+            return {
+              name: pokemon.name,
+              price: generateRandomPrice(),
+              mainImageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`,
+              thumbImageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`,
+            };
+          }),
+        ),
+      );
+
+      dispatch(setFetchLoading(false));
+    })
+    .catch(() => {
+      dispatch(setFetchError(true));
+    });
 };
 
 export default reducer;
