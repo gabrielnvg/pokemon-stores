@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from './redux/modules/products';
-import './App.scss';
 
 function App() {
   const dispatch = useDispatch();
