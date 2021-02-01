@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from './redux/modules/products';
 
 import MainContainer from './components/MainContainer/MainContainer';
 
-import { fetchProducts } from './redux/modules/products';
 
 function App() {
   const dispatch = useDispatch();
