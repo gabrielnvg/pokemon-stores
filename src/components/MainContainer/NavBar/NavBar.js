@@ -67,7 +67,7 @@ function NavBar() {
             <img src="/logo32.png" alt="logo" />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            {process.env.STORE.name} Type Pokémon
+            {process.env.STORE.name} Pokémon Store
           </Typography>
 
           <div className={classes.grow}>
