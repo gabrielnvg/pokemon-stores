@@ -1,0 +1,6 @@
+@mixin font-primary {
+  font-family: $font-primary;
+  font-size: $font-primary-size;
+  line-height: $font-primary-line-height;
+  color: $color-text;
+}

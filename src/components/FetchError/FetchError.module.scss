@@ -2,10 +2,7 @@
 
 .fetch-error {
   margin-top: 25px;
-  font-family: $font-primary;
-  font-size: $font-primary-size;
-  line-height: $font-primary-line-height;
-  color: $color-text;
+  @include font-primary;
   text-align: center;
 
   .text-row {

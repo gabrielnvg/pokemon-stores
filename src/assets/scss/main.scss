@@ -1,10 +1,7 @@
 @import 'partials/imports';
 
 body {
-  font-family: $font-primary;
-  font-size: $font-primary-size;
-  line-height: $font-primary-line-height;
-  color: $color-text;
+  @include font-primary;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
