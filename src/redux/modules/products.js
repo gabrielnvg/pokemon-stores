@@ -8,7 +8,7 @@ const types = {
   SET_FETCH_LOADING: 'products/SET_FETCH_LOADING',
   SET_FETCH_ERROR: 'products/SET_FETCH_ERROR',
   SET_PRISTINE_PRODUCTS: 'products/SET_PRISTINE_PRODUCTS',
-  SET_PRODUCTS: 'products/SET_PRODUCTS',
+  SET_CATALOG_PRODUCTS: 'products/SET_CATALOG_PRODUCTS',
 };
 
 const initialState = {
@@ -17,7 +17,7 @@ const initialState = {
     hasError: false,
   },
   pristineProducts: [],
-  products: [],
+  catalogProducts: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -43,10 +43,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         pristineProducts: action.pristineProducts,
       };
-    case types.SET_PRODUCTS:
+    case types.SET_CATALOG_PRODUCTS:
       return {
         ...state,
-        products: action.products,
+        catalogProducts: action.catalogProducts,
       };
     default:
       return state;
@@ -68,9 +68,9 @@ export const setPristineProducts = (pristineProducts) => ({
   pristineProducts,
 });
 
-export const setProducts = (products) => ({
-  type: types.SET_PRODUCTS,
-  products,
+export const setCatalogProducts = (catalogProducts) => ({
+  type: types.SET_CATALOG_PRODUCTS,
+  catalogProducts,
 });
 
 export const fetchProducts = () => (dispatch) => {
@@ -94,7 +94,7 @@ export const fetchProducts = () => (dispatch) => {
       });
 
       dispatch(setPristineProducts(products));
-      dispatch(setProducts(products));
+      dispatch(setCatalogProducts(products));
       dispatch(setFetchLoading(false));
     })
     .catch(() => {
@@ -103,13 +103,13 @@ export const fetchProducts = () => (dispatch) => {
 };
 
 export const filterProducts = (searchBarValue) => (dispatch, getState) => {
-    const { pristineProducts } = getState().products;
+  const { pristineProducts } = getState().products;
 
-    const filteredProducts = pristineProducts.filter((_, i) =>
-      pristineProducts[i].name.includes(searchBarValue.toLowerCase()),
-    );
+  const filteredProducts = pristineProducts.filter((_, i) =>
+    pristineProducts[i].name.includes(searchBarValue.toLowerCase()),
+  );
 
-    dispatch(setProducts(filteredProducts));
+  dispatch(setCatalogProducts(filteredProducts));
 };
 
 export default reducer;

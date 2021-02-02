@@ -12,7 +12,7 @@ import EmptySearch from './components/EmptySearch/EmptySearch';
 function App() {
   const dispatch = useDispatch();
   const store = useSelector((state) => state.products);
-  const { products } = store;
+  const { catalogProducts } = store;
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -32,8 +32,8 @@ function App() {
 
       {!store.fetchStatus.isLoading &&
         !store.fetchStatus.hasError &&
-        (products.length ? (
-          <ProductsCatalog products={products} />
+        (catalogProducts.length ? (
+          <ProductsCatalog products={catalogProducts} />
         ) : (
           <FadeIn>
             <EmptySearch />

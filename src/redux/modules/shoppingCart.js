@@ -36,7 +36,7 @@ export const addProductQuantity = (products) => ({
 });
 
 export const addPruductToShoppingCart = (productId) => (dispatch, getState) => {
-  const catalogProducts = getState().products.products;
+  const { catalogProducts } = getState().products;
   const shoppingCartProducts = getState().shoppingCart;
   const parsedProductId = parseInt(productId, 10);
 
