@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Drawer from '@material-ui/core/Drawer';
@@ -12,6 +11,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
+import { toggleShoppingCartDrawer } from '../../../redux/modules/shoppingCart';
+
 const useStyles = makeStyles((theme) => ({
   list: {
     width: 250,
@@ -21,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ShoppingCartDrawer({ toggleShoppingCartDrawer }) {
+function ShoppingCartDrawer() {
+  const dispatch = useDispatch();
   const shoppingCartState = useSelector((state) => state.shoppingCart);
   const { isDrawerOpen } = shoppingCartState;
   const classes = useStyles();
@@ -30,13 +32,19 @@ function ShoppingCartDrawer({ toggleShoppingCartDrawer }) {
     <Drawer
       anchor="right"
       open={isDrawerOpen}
-      onClose={toggleShoppingCartDrawer(false)}
+      onClose={(event) => {
+        dispatch(toggleShoppingCartDrawer(false, event));
+      }}
     >
       <div
         className={classes.list}
         role="presentation"
-        onClick={toggleShoppingCartDrawer(false)}
-        onKeyDown={toggleShoppingCartDrawer(false)}
+        onClick={(event) => {
+          dispatch(toggleShoppingCartDrawer(false, event));
+        }}
+        onKeyDown={(event) => {
+          dispatch(toggleShoppingCartDrawer(false, event));
+        }}
       >
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
@@ -63,9 +71,5 @@ function ShoppingCartDrawer({ toggleShoppingCartDrawer }) {
     </Drawer>
   );
 }
-
-ShoppingCartDrawer.propTypes = {
-  toggleShoppingCartDrawer: PropTypes.func.isRequired,
-};
 
 export default ShoppingCartDrawer;

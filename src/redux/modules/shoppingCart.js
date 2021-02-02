@@ -102,4 +102,15 @@ export const addPruductToShoppingCart = (productId) => (dispatch, getState) => {
   dispatch(setIsDrawerOpen(true));
 };
 
+export const toggleShoppingCartDrawer = (isOpen, event) => (dispatch) => {
+  if (
+    event.type === 'keydown' &&
+    (event.key === 'Tab' || event.key === 'Shift')
+  ) {
+    return;
+  }
+
+  dispatch(setIsDrawerOpen(isOpen));
+};
+
 export default reducer;

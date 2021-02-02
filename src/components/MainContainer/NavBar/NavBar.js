@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { fade, makeStyles } from '@material-ui/core/styles';
 
@@ -13,6 +12,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 
 import { filterProducts } from '../../../redux/modules/products';
+import { toggleShoppingCartDrawer } from '../../../redux/modules/shoppingCart';
 import debounce from '../../../assets/js/utils/debounce';
 
 const useStyles = makeStyles((theme) => ({
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function NavBar({ toggleShoppingCartDrawer }) {
+function NavBar() {
   const dispatch = useDispatch();
   const shoppingCartState = useSelector((state) => state.shoppingCart);
   const classes = useStyles();
@@ -100,7 +100,9 @@ function NavBar({ toggleShoppingCartDrawer }) {
           <IconButton
             aria-label="open shopping cart drawer"
             color="inherit"
-            onClick={toggleShoppingCartDrawer(true)}
+            onClick={(event) => {
+              dispatch(toggleShoppingCartDrawer(true, event));
+            }}
           >
             <Badge
               badgeContent={shoppingCartState.totalProductsQuantity}
@@ -114,9 +116,5 @@ function NavBar({ toggleShoppingCartDrawer }) {
     </div>
   );
 }
-
-NavBar.propTypes = {
-  toggleShoppingCartDrawer: PropTypes.func.isRequired,
-};
 
 export default NavBar;
