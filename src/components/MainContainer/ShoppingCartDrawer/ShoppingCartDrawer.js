@@ -6,12 +6,21 @@ import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
 
 import { toggleShoppingCartDrawer } from '../../../redux/modules/shoppingCart';
 
 import ShoppingCartList from './ShoppingCartList/ShoppingCartList';
 
 const useStyles = makeStyles((theme) => ({
+  drawerContainer: {
+    position: 'relative',
+    width: 250,
+    height: '100vh',
+    [theme.breakpoints.up('sm')]: {
+      width: 400,
+    },
+  },
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
@@ -35,10 +44,29 @@ const useStyles = makeStyles((theme) => ({
   drawerHeaderIcon: {
     color: '#ffffff',
   },
-  list: {
-    width: 250,
-    [theme.breakpoints.up('sm')]: {
-      width: 400,
+  drawerFooter: {
+    position: 'absolute',
+    width: '100%',
+    bottom: 0,
+  },
+  drawerFooterContainer: {
+    padding: theme.spacing(1, 2),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    fontSize: '1.25rem',
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    lineHeight: 1.6,
+    letterSpacing: '0.0075em',
+  },
+  button: {
+    width: '100%',
+    textAlign: 'center',
+    borderRadius: 0,
+    color: '#ffffff',
+    backgroundColor: process.env.STORE.color,
+    '&:hover': {
+      backgroundColor: process.env.STORE.colorDark,
     },
   },
 }));
@@ -46,7 +74,11 @@ const useStyles = makeStyles((theme) => ({
 function ShoppingCartDrawer() {
   const dispatch = useDispatch();
   const shoppingCartState = useSelector((state) => state.shoppingCart);
-  const { isDrawerOpen, totalProductsQuantity } = shoppingCartState;
+  const {
+    isDrawerOpen,
+    totalProductsQuantity,
+    totalProductsPrice,
+  } = shoppingCartState;
   const classes = useStyles();
 
   return (
@@ -57,7 +89,7 @@ function ShoppingCartDrawer() {
         dispatch(toggleShoppingCartDrawer(false, event));
       }}
     >
-      <div className={classes.list} role="presentation">
+      <div className={classes.drawerContainer} role="presentation">
         <div className={classes.drawerHeader}>
           <span className={classes.headerTitleText}>
             Shopping Cart{' '}
@@ -82,9 +114,19 @@ function ShoppingCartDrawer() {
 
         <ShoppingCartList />
 
-        <Divider />
+        <div className={classes.drawerFooter}>
+          <Divider />
+          <div className={classes.drawerFooterContainer}>
+            Total:{' '}
+            <span>
+              <strong>$ {totalProductsPrice}</strong>
+            </span>
+          </div>
 
-        <div>Total products price here</div>
+          <Button className={classes.button} variant="contained" size="large">
+            Purchase
+          </Button>
+        </div>
       </div>
     </Drawer>
   );
