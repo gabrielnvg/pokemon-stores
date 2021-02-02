@@ -99,6 +99,7 @@ export const addPruductToShoppingCart = (productId) => (dispatch, getState) => {
   }
 
   dispatch(setTotalProductsQuantity());
+  dispatch(setIsDrawerOpen(true));
 };
 
 export default reducer;
