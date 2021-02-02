@@ -63,7 +63,7 @@ function ProductCard({ product }) {
           color="textSecondary"
           component="p"
         >
-          $ {product.price}
+          $ {product.price.toFixed(2)}
         </Typography>
       </CardContent>
 
