@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FadeIn from 'react-fade-in';
 import styles from './ProductsCatalog.module.scss';
 
 import ProductCard from './ProductCard/ProductCard';
@@ -8,7 +9,11 @@ function ProductsCatalog({ products }) {
   return (
     <div className={styles['products-catalog']}>
       {products.map((product, i) => (
-        <ProductCard key={`product-${i + 1}`} product={product} />
+        <div key={`product-${i + 1}`} className={styles['products-cards']}>
+          <FadeIn>
+            <ProductCard product={product} />
+          </FadeIn>
+        </div>
       ))}
     </div>
   );

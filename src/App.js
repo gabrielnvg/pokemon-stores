@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import FadeIn from 'react-fade-in';
 import { fetchProducts } from './redux/modules/products';
 
 import MainContainer from './components/MainContainer/MainContainer';
@@ -19,7 +20,11 @@ function App() {
 
   return (
     <MainContainer>
-      {store.fetchStatus.hasError && <FetchError />}
+      {store.fetchStatus.hasError && (
+        <FadeIn>
+          <FetchError />
+        </FadeIn>
+      )}
 
       {store.fetchStatus.isLoading && !store.fetchStatus.hasError && (
         <FetchLoading />
@@ -30,7 +35,9 @@ function App() {
         (products.length ? (
           <ProductsCatalog products={products} />
         ) : (
-          <EmptySearch />
+          <FadeIn>
+            <EmptySearch />
+          </FadeIn>
         ))}
     </MainContainer>
   );
