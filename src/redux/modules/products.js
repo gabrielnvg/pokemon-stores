@@ -85,6 +85,7 @@ export const fetchProducts = () => (dispatch) => {
         const pokemonId = getLastUrlPath(pokemon.url);
 
         return {
+          id: parseInt(pokemonId, 10),
           name: pokemon.name,
           price: generateRandomPrice(),
           mainImageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`,

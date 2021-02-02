@@ -8,8 +8,8 @@ import ProductCard from './ProductCard/ProductCard';
 function ProductsCatalog({ products }) {
   return (
     <div className={styles['products-catalog']}>
-      {products.map((product, i) => (
-        <div key={`product-${i + 1}`} className={styles['products-cards']}>
+      {products.map((product) => (
+        <div key={`product-${product.id}`} className={styles['products-cards']}>
           <FadeIn>
             <ProductCard product={product} />
           </FadeIn>
@@ -22,6 +22,7 @@ function ProductsCatalog({ products }) {
 ProductsCatalog.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       price: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
         .isRequired,

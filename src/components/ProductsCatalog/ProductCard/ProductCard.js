@@ -76,6 +76,7 @@ function ProductCard({ product }) {
 
 ProductCard.propTypes = {
   product: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     mainImageUrl: PropTypes.string.isRequired,
