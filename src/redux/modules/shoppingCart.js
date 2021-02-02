@@ -6,20 +6,28 @@ const types = {
   // REMOVE_ALL_PRODUCTS: 'shoppingCart/REMOVE_ALL_PRODUCTS',
 };
 
-const initialState = [];
+const initialState = {
+  shoppingCartProducts: [],
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case types.ADD_PRODUCT:
-      return [
+      return {
         ...state,
-        {
-          ...action.product,
-          quantity: 1,
-        },
-      ];
+        shoppingCartProducts: [
+          ...state.shoppingCartProducts,
+          {
+            ...action.product,
+            quantity: 1,
+          },
+        ],
+      };
     case types.ADD_PRODUCT_QUANTITY:
-      return action.products;
+      return {
+        ...state,
+        shoppingCartProducts: action.products,
+      };
     default:
       return state;
   }
@@ -37,7 +45,7 @@ export const addProductQuantity = (products) => ({
 
 export const addPruductToShoppingCart = (productId) => (dispatch, getState) => {
   const { catalogProducts } = getState().products;
-  const shoppingCartProducts = getState().shoppingCart;
+  const { shoppingCartProducts } = getState().shoppingCart;
   const parsedProductId = parseInt(productId, 10);
 
   const selectedProduct = catalogProducts.find(
