@@ -22,7 +22,7 @@ function FetchLoading() {
       <p>Capturing the Pokémon, please wait...</p>
 
       <CircularProgress
-        className={[classes.root, classes.circle]}
+        className={[classes.root, classes.circle].join(' ')}
         color="secondary"
       />
     </div>
