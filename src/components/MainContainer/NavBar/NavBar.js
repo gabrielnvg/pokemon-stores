@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { fade, makeStyles } from '@material-ui/core/styles';
 
 import AppBar from '@material-ui/core/AppBar';
@@ -56,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function NavBar() {
+function NavBar({ toggleShoppingCartDrawer }) {
   const classes = useStyles();
 
   return (
@@ -86,7 +87,11 @@ function NavBar() {
             </div>
           </div>
 
-          <IconButton aria-label="open shopping cart drawer" color="inherit">
+          <IconButton
+            aria-label="open shopping cart drawer"
+            color="inherit"
+            onClick={toggleShoppingCartDrawer('right', true)}
+          >
             <Badge badgeContent={5} color="secondary">
               <ShoppingCart />
             </Badge>
@@ -96,5 +101,9 @@ function NavBar() {
     </div>
   );
 }
+
+NavBar.propTypes = {
+  toggleShoppingCartDrawer: PropTypes.func.isRequired,
+};
 
 export default NavBar;
