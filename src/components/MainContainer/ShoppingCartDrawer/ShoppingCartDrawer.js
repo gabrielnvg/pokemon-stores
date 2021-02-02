@@ -15,7 +15,7 @@ import ShoppingCartList from './ShoppingCartList/ShoppingCartList';
 const useStyles = makeStyles((theme) => ({
   drawerContainer: {
     position: 'relative',
-    width: 250,
+    width: 270,
     height: '100vh',
     [theme.breakpoints.up('sm')]: {
       width: 400,
