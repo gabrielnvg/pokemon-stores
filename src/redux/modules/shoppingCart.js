@@ -1,7 +1,7 @@
 const types = {
   ADD_PRODUCT: 'products/ADD_PRODUCT',
   // REMOVE_PRODUCT: 'products/REMOVE_PRODUCT',
-  // ADD_PRODUCT_QUANTITY: 'products/ADD_PRODUCT_QUANTITY',
+  ADD_PRODUCT_QUANTITY: 'products/ADD_PRODUCT_QUANTITY',
   // REMOVE_PRODUCT_QUANTITY: 'products/REMOVE_PRODUCT_QUANTITY',
   // REMOVE_ALL_PRODUCTS: 'products/REMOVE_ALL_PRODUCTS',
 };
@@ -18,6 +18,8 @@ const reducer = (state = initialState, action) => {
           quantity: 1,
         },
       ];
+    case types.ADD_PRODUCT_QUANTITY:
+      return action.products;
     default:
       return state;
   }
@@ -28,20 +30,37 @@ export const addProduct = (product) => ({
   product,
 });
 
+export const addProductQuantity = (products) => ({
+  type: types.ADD_PRODUCT_QUANTITY,
+  products,
+});
+
 export const addPruductToShoppingCart = (productId) => (dispatch, getState) => {
-  const { products } = getState().products;
+  const catalogProducts = getState().products.products;
+  const shoppingCartProducts = getState().shoppingCart;
   const parsedProductId = parseInt(productId, 10);
 
-  const selectedProduct = products.find(
+  const selectedProduct = catalogProducts.find(
     (product) => product.id === parsedProductId,
   );
 
   const isProductInShoppingCart = Boolean(
-    getState().shoppingCart.find((product) => product.id === parsedProductId),
+    shoppingCartProducts.find((product) => product.id === parsedProductId),
   );
 
   if (isProductInShoppingCart) {
-    //
+    const modifiedProducts = shoppingCartProducts.map((product) => {
+      if (product.id === parsedProductId) {
+        return {
+          ...product,
+          quantity: product.quantity + 1,
+        };
+      }
+
+      return product;
+    });
+
+    dispatch(addProductQuantity(modifiedProducts));
   } else {
     dispatch(addProduct(selectedProduct));
   }
