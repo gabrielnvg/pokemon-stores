@@ -43,7 +43,9 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         totalProductsPrice:
-          state.totalProductsPrice + action.currentProductPrice,
+          Math.ceil(
+            (state.totalProductsPrice + action.currentProductPrice) * 100,
+          ) / 100,
       };
     case types.SET_IS_DRAWER_OPEN:
       return {
