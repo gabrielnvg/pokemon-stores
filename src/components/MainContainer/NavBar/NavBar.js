@@ -100,7 +100,7 @@ function NavBar({ toggleShoppingCartDrawer }) {
           <IconButton
             aria-label="open shopping cart drawer"
             color="inherit"
-            onClick={toggleShoppingCartDrawer('right', true)}
+            onClick={toggleShoppingCartDrawer(true)}
           >
             <Badge
               badgeContent={shoppingCartState.totalProductsQuantity}

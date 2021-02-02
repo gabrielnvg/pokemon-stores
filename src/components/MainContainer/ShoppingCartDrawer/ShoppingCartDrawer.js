@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Drawer from '@material-ui/core/Drawer';
@@ -19,62 +18,51 @@ const useStyles = makeStyles((theme) => ({
       width: 400,
     },
   },
-  fullList: {
-    width: 'auto',
-  },
 }));
 
-function ShoppingCartDrawer({ state, toggleShoppingCartDrawer }) {
+function ShoppingCartDrawer({ isDrawerOpen, toggleShoppingCartDrawer }) {
   const classes = useStyles();
-
-  const list = (anchor) => (
-    <div
-      className={clsx(classes.list, {
-        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-      })}
-      role="presentation"
-      onClick={toggleShoppingCartDrawer(anchor, false)}
-      onKeyDown={toggleShoppingCartDrawer(anchor, false)}
-    >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
 
   return (
     <Drawer
       anchor="right"
-      open={state.right}
-      onClose={toggleShoppingCartDrawer('right', false)}
+      open={isDrawerOpen}
+      onClose={toggleShoppingCartDrawer(false)}
     >
-      {list('right')}
+      <div
+        className={classes.list}
+        role="presentation"
+        onClick={toggleShoppingCartDrawer(false)}
+        onKeyDown={toggleShoppingCartDrawer(false)}
+      >
+        <List>
+          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </div>
     </Drawer>
   );
 }
 
 ShoppingCartDrawer.propTypes = {
-  state: PropTypes.shape({
-    right: PropTypes.bool.isRequired,
-  }).isRequired,
+  isDrawerOpen: PropTypes.bool.isRequired,
   toggleShoppingCartDrawer: PropTypes.func.isRequired,
 };
 

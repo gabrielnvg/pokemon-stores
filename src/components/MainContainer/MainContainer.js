@@ -14,11 +14,9 @@ import ShoppingCartDrawer from './ShoppingCartDrawer/ShoppingCartDrawer';
 
 function MainContainer(props) {
   const { children } = props;
-  const [state, setState] = useState({
-    right: false,
-  });
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const toggleShoppingCartDrawer = (anchor, open) => (event) => {
+  const toggleShoppingCartDrawer = (isOpen) => (event) => {
     if (
       event.type === 'keydown' &&
       (event.key === 'Tab' || event.key === 'Shift')
@@ -26,7 +24,7 @@ function MainContainer(props) {
       return;
     }
 
-    setState({ ...state, [anchor]: open });
+    setIsDrawerOpen(isOpen);
   };
 
   return (
@@ -49,8 +47,10 @@ function MainContainer(props) {
         </Fab>
       </ScrollTop>
 
-      <ShoppingCartDrawer state={state} toggleShoppingCartDrawer={toggleShoppingCartDrawer} />
-
+      <ShoppingCartDrawer
+        isDrawerOpen={isDrawerOpen}
+        toggleShoppingCartDrawer={toggleShoppingCartDrawer}
+      />
     </>
   );
 }
