@@ -24,6 +24,7 @@
   },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-unused-vars": 1,
     "import/no-dynamic-require": 0,
     "react-hooks/exhaustive-deps": 0,
     "react/jsx-props-no-spreading": 0
