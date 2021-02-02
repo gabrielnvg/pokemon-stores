@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
     marginLeft: theme.spacing(3),
     marginRight: theme.spacing(3),
-    maxWidth: '500px',
+    maxWidth: 500,
     [theme.breakpoints.up('sm')]: {
       width: 'auto',
     },

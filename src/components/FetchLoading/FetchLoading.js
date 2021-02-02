@@ -7,7 +7,7 @@ import styles from './FetchLoading.module.scss';
 
 const useStyles = makeStyles(() => ({
   root: {
-    marginTop: '20px',
+    marginTop: 20,
   },
   circle: {
     color: process.env.STORE.colorDark,
