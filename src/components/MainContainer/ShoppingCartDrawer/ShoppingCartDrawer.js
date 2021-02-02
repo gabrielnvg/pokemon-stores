@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Drawer from '@material-ui/core/Drawer';
@@ -20,7 +21,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ShoppingCartDrawer({ isDrawerOpen, toggleShoppingCartDrawer }) {
+function ShoppingCartDrawer({ toggleShoppingCartDrawer }) {
+  const shoppingCartState = useSelector((state) => state.shoppingCart);
+  const { isDrawerOpen } = shoppingCartState;
   const classes = useStyles();
 
   return (
@@ -62,7 +65,6 @@ function ShoppingCartDrawer({ isDrawerOpen, toggleShoppingCartDrawer }) {
 }
 
 ShoppingCartDrawer.propTypes = {
-  isDrawerOpen: PropTypes.bool.isRequired,
   toggleShoppingCartDrawer: PropTypes.func.isRequired,
 };
 

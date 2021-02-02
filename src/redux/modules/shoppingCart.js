@@ -6,12 +6,14 @@ const types = {
   // REMOVE_ALL_PRODUCTS: 'shoppingCart/REMOVE_ALL_PRODUCTS',
   SET_TOTAL_PRODUCTS_QUANTITY: 'shoppingCart/SET_TOTAL_PRODUCTS_QUANTITY',
   // SET_TOTAL_PRODUCTS_PRICE: 'shoppingCart/SET_TOTAL_PRODUCTS_PRICE',
+  SET_IS_DRAWER_OPEN: 'shoppingCart/SET_IS_DRAWER_OPEN',
 };
 
 const initialState = {
   shoppingCartProducts: [],
   totalProductsQuantity: 0,
   totalProductsPrice: 0,
+  isDrawerOpen: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -37,6 +39,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         totalProductsQuantity: state.totalProductsQuantity + 1,
       };
+    case types.SET_IS_DRAWER_OPEN:
+      return {
+        ...state,
+        isDrawerOpen: action.isDrawerOpen,
+      };
     default:
       return state;
   }
@@ -54,6 +61,11 @@ export const addProductQuantity = (products) => ({
 
 export const setTotalProductsQuantity = () => ({
   type: types.SET_TOTAL_PRODUCTS_QUANTITY,
+});
+
+export const setIsDrawerOpen = (isDrawerOpen) => ({
+  type: types.SET_IS_DRAWER_OPEN,
+  isDrawerOpen,
 });
 
 export const addPruductToShoppingCart = (productId) => (dispatch, getState) => {

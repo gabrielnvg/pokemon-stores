@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Box from '@material-ui/core/Box';
@@ -8,13 +9,15 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
+import { setIsDrawerOpen } from '../../redux/modules/shoppingCart';
+
 import NavBar from './NavBar/NavBar';
 import ScrollTop from './ScrollTop/ScrollTop';
 import ShoppingCartDrawer from './ShoppingCartDrawer/ShoppingCartDrawer';
 
 function MainContainer(props) {
   const { children } = props;
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const toggleShoppingCartDrawer = (isOpen) => (event) => {
     if (
@@ -24,7 +27,7 @@ function MainContainer(props) {
       return;
     }
 
-    setIsDrawerOpen(isOpen);
+    dispatch(setIsDrawerOpen(isOpen));
   };
 
   return (
@@ -48,7 +51,6 @@ function MainContainer(props) {
       </ScrollTop>
 
       <ShoppingCartDrawer
-        isDrawerOpen={isDrawerOpen}
         toggleShoppingCartDrawer={toggleShoppingCartDrawer}
       />
     </>
