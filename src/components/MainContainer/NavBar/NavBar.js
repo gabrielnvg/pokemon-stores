@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { fade, makeStyles } from '@material-ui/core/styles';
 
 import AppBar from '@material-ui/core/AppBar';
@@ -10,6 +11,9 @@ import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
+
+import { filterProducts } from '../../../redux/modules/products';
+import debounce from '../../../assets/js/utils/debounce';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -58,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function NavBar({ toggleShoppingCartDrawer }) {
+  const dispatch = useDispatch();
   const classes = useStyles();
 
   return (
@@ -83,6 +88,10 @@ function NavBar({ toggleShoppingCartDrawer }) {
                   input: classes.inputInput,
                 }}
                 inputProps={{ 'aria-label': 'search' }}
+                onChange={debounce(
+                  (event) => dispatch(filterProducts(event.target.value)),
+                  350,
+                )}
               />
             </div>
           </div>

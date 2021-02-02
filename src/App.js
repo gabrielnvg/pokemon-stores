@@ -6,6 +6,7 @@ import MainContainer from './components/MainContainer/MainContainer';
 import FetchError from './components/FetchError/FetchError';
 import FetchLoading from './components/FetchLoading/FetchLoading';
 import ProductsCatalog from './components/ProductsCatalog/ProductsCatalog';
+import EmptySearch from './components/EmptySearch/EmptySearch';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,9 +25,13 @@ function App() {
         <FetchLoading />
       )}
 
-      {!store.fetchStatus.isLoading && !store.fetchStatus.hasError && (
-        <ProductsCatalog products={products} />
-      )}
+      {!store.fetchStatus.isLoading &&
+        !store.fetchStatus.hasError &&
+        (products.length ? (
+          <ProductsCatalog products={products} />
+        ) : (
+          <EmptySearch />
+        ))}
     </MainContainer>
   );
 }

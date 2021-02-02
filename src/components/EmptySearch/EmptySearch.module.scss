@@ -1,0 +1,7 @@
+@import '../../assets/scss/partials/imports';
+
+.empty-search {
+  margin-top: 25px;
+  @include font-primary;
+  text-align: center;
+}
