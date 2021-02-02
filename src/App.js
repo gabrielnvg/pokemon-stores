@@ -11,8 +11,8 @@ import EmptySearch from './components/EmptySearch/EmptySearch';
 
 function App() {
   const dispatch = useDispatch();
-  const store = useSelector((state) => state.products);
-  const { catalogProducts } = store;
+  const productsState = useSelector((state) => state.products);
+  const { catalogProducts } = productsState;
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -20,18 +20,17 @@ function App() {
 
   return (
     <MainContainer>
-      {store.fetchStatus.hasError && (
+      {productsState.fetchStatus.hasError && (
         <FadeIn>
           <FetchError />
         </FadeIn>
       )}
 
-      {store.fetchStatus.isLoading && !store.fetchStatus.hasError && (
-        <FetchLoading />
-      )}
+      {productsState.fetchStatus.isLoading &&
+        !productsState.fetchStatus.hasError && <FetchLoading />}
 
-      {!store.fetchStatus.isLoading &&
-        !store.fetchStatus.hasError &&
+      {!productsState.fetchStatus.isLoading &&
+        !productsState.fetchStatus.hasError &&
         (catalogProducts.length ? (
           <ProductsCatalog products={catalogProducts} />
         ) : (
