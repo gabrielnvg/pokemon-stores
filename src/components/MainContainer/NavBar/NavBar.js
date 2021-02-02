@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fade, makeStyles } from '@material-ui/core/styles';
 
 import AppBar from '@material-ui/core/AppBar';
@@ -63,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 
 function NavBar({ toggleShoppingCartDrawer }) {
   const dispatch = useDispatch();
+  const shoppingCartState = useSelector((state) => state.shoppingCart);
   const classes = useStyles();
 
   return (
@@ -101,7 +102,10 @@ function NavBar({ toggleShoppingCartDrawer }) {
             color="inherit"
             onClick={toggleShoppingCartDrawer('right', true)}
           >
-            <Badge badgeContent={5} color="secondary">
+            <Badge
+              badgeContent={shoppingCartState.totalProductsQuantity}
+              color="secondary"
+            >
               <ShoppingCart />
             </Badge>
           </IconButton>
