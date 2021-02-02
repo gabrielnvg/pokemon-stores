@@ -4,10 +4,14 @@ const types = {
   ADD_PRODUCT_QUANTITY: 'shoppingCart/ADD_PRODUCT_QUANTITY',
   // REMOVE_PRODUCT_QUANTITY: 'shoppingCart/REMOVE_PRODUCT_QUANTITY',
   // REMOVE_ALL_PRODUCTS: 'shoppingCart/REMOVE_ALL_PRODUCTS',
+  SET_TOTAL_PRODUCTS_QUANTITY: 'shoppingCart/SET_TOTAL_PRODUCTS_QUANTITY',
+  // SET_TOTAL_PRODUCTS_PRICE: 'shoppingCart/SET_TOTAL_PRODUCTS_PRICE',
 };
 
 const initialState = {
   shoppingCartProducts: [],
+  totalProductsQuantity: 0,
+  totalProductsPrice: 0,
 };
 
 const reducer = (state = initialState, action) => {
@@ -28,6 +32,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         shoppingCartProducts: action.products,
       };
+    case types.SET_TOTAL_PRODUCTS_QUANTITY:
+      return {
+        ...state,
+        totalProductsQuantity: state.totalProductsQuantity + 1,
+      };
     default:
       return state;
   }
@@ -41,6 +50,10 @@ export const addProduct = (product) => ({
 export const addProductQuantity = (products) => ({
   type: types.ADD_PRODUCT_QUANTITY,
   products,
+});
+
+export const setTotalProductsQuantity = () => ({
+  type: types.SET_TOTAL_PRODUCTS_QUANTITY,
 });
 
 export const addPruductToShoppingCart = (productId) => (dispatch, getState) => {
@@ -72,6 +85,8 @@ export const addPruductToShoppingCart = (productId) => (dispatch, getState) => {
   } else {
     dispatch(addProduct(selectedProduct));
   }
+
+  dispatch(setTotalProductsQuantity());
 };
 
 export default reducer;
