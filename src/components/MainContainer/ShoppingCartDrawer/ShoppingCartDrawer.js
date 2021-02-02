@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
-    padding: theme.spacing(0, 1),
+    padding: theme.spacing(0, 2),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: 'space-between',
@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: '0.0075em',
     color: '#ffffff',
     [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(0, 1),
       fontSize: 'initial',
       lineHeight: 'initial',
       fontWeight: 'initial',
