@@ -22,7 +22,6 @@
     "camelcase": "^6.1.0",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
     "css-loader": "4.3.0",
-    "cypress": "^6.4.0",
     "dotenv-expand": "5.1.0",
     "eslint": "^7.11.0",
     "eslint-config-react-app": "^6.0.0",
@@ -108,6 +107,7 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^6.4.0",
     "cypress-xpath": "^1.6.1",
     "eslint": "^7.18.0",
     "eslint-config-airbnb": "^18.2.1",
