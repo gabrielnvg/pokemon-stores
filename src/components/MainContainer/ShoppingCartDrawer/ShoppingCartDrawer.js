@@ -133,7 +133,7 @@ function ShoppingCartDrawer() {
           <div className={classes.drawerFooterContainer}>
             Total:{' '}
             <span>
-              <strong>${totalProductsPrice.toFixed(2)}</strong>
+              <strong>${totalProductsPrice.toFixed(2).replace('-', '')}</strong>
             </span>
           </div>
 
