@@ -8,7 +8,10 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 
-import { toggleShoppingCartDrawer } from '../../../redux/modules/shoppingCart';
+import {
+  toggleShoppingCartDrawer,
+  removeAllProducts,
+} from '../../../redux/modules/shoppingCart';
 import {
   openDialog,
   setDialogState,
@@ -165,6 +168,7 @@ function ShoppingCartDrawer() {
                   confirmButtonText: 'Ok',
                 }),
               );
+              dispatch(removeAllProducts());
               dispatch(openDialog());
             }}
           >
