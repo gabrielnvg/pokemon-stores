@@ -16,9 +16,7 @@ function ShoppingCartList() {
         <div key={`shopping-cart-product-${shoppingCartProduct.id}`}>
           <ShoppingCartListItem shoppingCartProduct={shoppingCartProduct} />
 
-          {shoppingCartProduct.length !== i + 1 && (
-            <Divider variant="inset" component="li" />
-          )}
+          {shoppingCartProduct.length !== i + 1 && <Divider component="li" />}
         </div>
       ))}
     </List>
