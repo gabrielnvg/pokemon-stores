@@ -90,7 +90,7 @@ ProductCard.propTypes = {
   product: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    price: PropTypes.number.isRequired,
     mainImageUrl: PropTypes.string.isRequired,
     thumbImageUrl: PropTypes.string.isRequired,
   }).isRequired,
