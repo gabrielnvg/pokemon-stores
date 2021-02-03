@@ -106,7 +106,9 @@ function ShoppingCartDrawer() {
             <span>
               (
               {totalProductsQuantity
-                ? `${totalProductsQuantity} Pokémon`
+                ? `${
+                    totalProductsQuantity > 99 ? '99+' : totalProductsQuantity
+                  } Pokémon`
                 : 'empty'}
               )
             </span>
