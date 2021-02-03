@@ -15,12 +15,12 @@ import ShoppingCartList from './ShoppingCartList/ShoppingCartList';
 const useStyles = makeStyles((theme) => ({
   drawerContainer: {
     position: 'relative',
-    width: 270,
+    width: '100vw',
     minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
     overflow: 'hidden',
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up(450)]: {
       width: 400,
     },
   },
