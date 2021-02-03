@@ -23,7 +23,7 @@ function DialogContainer({
     >
       <DialogTitle id="alert-dialog-title">{dialogState.title}</DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-description">
+        <DialogContentText id="alert-dialog-description" component="div">
           {dialogState.body}
         </DialogContentText>
       </DialogContent>
