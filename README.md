@@ -4,7 +4,7 @@ A React app that shows multiple products for the user to choose and stores them 
 ## Demo
 - ### Grass type store
   https://gabrielnvg-pokemon-store-grass.surge.sh
-  
+
 - ### Fire type store
   https://gabrielnvg-pokemon-store-fire.surge.sh
 
@@ -47,3 +47,8 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+---
+
+## Observations
+- Since there no product stock quantity information comes from the JSON, the product stock value in the app is inifnite.
