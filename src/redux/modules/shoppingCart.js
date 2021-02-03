@@ -197,5 +197,16 @@ export const toggleShoppingCartDrawer = (isOpen, event) => (dispatch) => {
 
   dispatch(setIsDrawerOpen(isOpen));
 };
+export const emptyShoppingCart = () => (dispatch, getState) => {
+  const { totalProductsPrice } = getState().shoppingCart;
+
+  dispatch(removeAllProducts());
+  dispatch(
+    setTotalProductsPrice({
+      currentProductPrice: totalProductsPrice,
+      isAdd: false,
+    }),
+  );
+};
 
 export default reducer;

@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 
 import {
   toggleShoppingCartDrawer,
-  removeAllProducts,
+  emptyShoppingCart,
 } from '../../../redux/modules/shoppingCart';
 import {
   openDialog,
@@ -168,7 +168,7 @@ function ShoppingCartDrawer() {
                   confirmButtonText: 'Ok',
                 }),
               );
-              dispatch(removeAllProducts());
+              dispatch(emptyShoppingCart());
               dispatch(openDialog());
             }}
           >
