@@ -120,7 +120,7 @@ function ShoppingCartDrawer() {
           <div className={classes.drawerFooterContainer}>
             Total:{' '}
             <span>
-              <strong>${totalProductsPrice}</strong>
+              <strong>${totalProductsPrice.toFixed(2)}</strong>
             </span>
           </div>
 
