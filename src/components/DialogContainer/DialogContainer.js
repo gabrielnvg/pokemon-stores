@@ -29,19 +29,12 @@ function DialogContainer({
       </DialogContent>
       <DialogActions>
         {dialogState.hasCancelButton && (
-          <Button
-            onClick={handleCancelButtonClick}
-            color="secondary"
-          >
+          <Button onClick={handleCancelButtonClick} color="secondary">
             {dialogState.cancelButtonText}
           </Button>
         )}
 
-        <Button
-          onClick={handleConfirmButtonClick}
-          color="primary"
-          autoFocus
-        >
+        <Button onClick={handleConfirmButtonClick} color="primary" autoFocus>
           {dialogState.confirmButtonText}
         </Button>
       </DialogActions>
@@ -53,7 +46,7 @@ DialogContainer.propTypes = {
   dialogState: PropTypes.shape({
     isOpen: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
-    body: PropTypes.oneOf([PropTypes.element, PropTypes.string]).isRequired,
+    body: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
     confirmButtonText: PropTypes.string.isRequired,
     hasCancelButton: PropTypes.bool,
     cancelButtonText: PropTypes.string,
