@@ -95,6 +95,7 @@ function ShoppingCartDrawer() {
     isDrawerOpen,
     totalProductsQuantity,
     totalProductsPrice,
+    shoppingCartProducts,
   } = shoppingCartState;
   const classes = useStyles();
 
@@ -148,6 +149,7 @@ function ShoppingCartDrawer() {
             className={classes.button}
             variant="contained"
             size="large"
+            disabled={!shoppingCartProducts.length}
             onClick={() => {
               dispatch(
                 setDialogState({
