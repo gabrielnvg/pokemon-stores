@@ -6,6 +6,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import IconButton from '@material-ui/core/IconButton';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles(() => ({
   avatarContainer: {
@@ -14,17 +19,19 @@ const useStyles = makeStyles(() => ({
   },
   productInfo: {
     width: '100%',
+    paddingRight: 2,
+    lineHeight: 1.3,
   },
   productName: {
     textTransform: 'capitalize',
   },
-  productDescription: {
+  productQuantityContainer: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
-  productQuantity: {
-    //
+  productQuantityValue: {
+    padding: '0 2px',
   },
   productPrice: {
     fontSize: 16,
@@ -53,20 +60,38 @@ function ShoppingCartListItem({ shoppingCartProduct }) {
           }
         />
 
-        <div className={classes.productDescription}>
-          <div className={classes.productQuantity}>
-            {/* Plus and minus buttons with the product quantity here */}
-          </div>
-          <div className={classes.productPrice}>
-            <strong>
-              $
-              {(
-                shoppingCartProduct.price * shoppingCartProduct.quantity
-              ).toFixed(2)}
-            </strong>
-          </div>
+        <div className={classes.productPrice}>
+          <strong>
+            $
+            {(shoppingCartProduct.price * shoppingCartProduct.quantity).toFixed(
+              2,
+            )}
+          </strong>
         </div>
       </div>
+
+      <div className={classes.productQuantityContainer}>
+        <IconButton
+          color="secondary"
+          disabled={shoppingCartProduct.quantity <= 1}
+        >
+          <RemoveIcon />
+        </IconButton>
+
+        <div className={classes.productQuantityValue}>
+          {shoppingCartProduct.quantity}
+        </div>
+
+        <IconButton color="primary">
+          <AddIcon />
+        </IconButton>
+      </div>
+
+      <ListItemSecondaryAction>
+        <IconButton edge="end" aria-label="delete">
+          <DeleteIcon />
+        </IconButton>
+      </ListItemSecondaryAction>
     </ListItem>
   );
 }
