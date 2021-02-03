@@ -9,6 +9,10 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 
 import { toggleShoppingCartDrawer } from '../../../redux/modules/shoppingCart';
+import {
+  openDialog,
+  setDialogState,
+} from '../../../redux/modules/purchaseConfirmationDialog';
 
 import ShoppingCartList from './ShoppingCartList/ShoppingCartList';
 
@@ -79,6 +83,9 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: process.env.STORE.colorDark,
     },
   },
+  purchaseConfirmationDialogBody: {
+    textAlign: 'center',
+  },
 }));
 
 function ShoppingCartDrawer() {
@@ -137,7 +144,28 @@ function ShoppingCartDrawer() {
             </span>
           </div>
 
-          <Button className={classes.button} variant="contained" size="large">
+          <Button
+            className={classes.button}
+            variant="contained"
+            size="large"
+            onClick={() => {
+              dispatch(
+                setDialogState({
+                  isOpen: false,
+                  title: 'Thank you!',
+                  body: (
+                    <div className={classes.purchaseConfirmationDialogBody}>
+                      <div>Your cashback:</div>
+                      <div>$xx.xx</div>
+                    </div>
+                  ),
+                  hasCancelButton: false,
+                  confirmButtonText: 'Ok',
+                }),
+              );
+              dispatch(openDialog());
+            }}
+          >
             Purchase
           </Button>
         </div>
