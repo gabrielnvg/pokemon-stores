@@ -22,7 +22,13 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-  }
+  },
+  productQuantity: {
+    //
+  },
+  productPrice: {
+    fontSize: 16,
+  },
 }));
 
 function ShoppingCartListItem({ shoppingCartProduct }) {
@@ -52,7 +58,12 @@ function ShoppingCartListItem({ shoppingCartProduct }) {
             {/* Plus and minus buttons with the product quantity here */}
           </div>
           <div className={classes.productPrice}>
-            {/* Product price multiplied by its quantity here */}
+            <strong>
+              $
+              {(
+                shoppingCartProduct.price * shoppingCartProduct.quantity
+              ).toFixed(2)}
+            </strong>
           </div>
         </div>
       </div>
