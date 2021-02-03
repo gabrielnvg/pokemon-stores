@@ -16,7 +16,10 @@ const useStyles = makeStyles((theme) => ({
   drawerContainer: {
     position: 'relative',
     width: 270,
-    height: '100vh',
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    overflow: 'hidden',
     [theme.breakpoints.up('sm')]: {
       width: 400,
     },
@@ -45,10 +48,16 @@ const useStyles = makeStyles((theme) => ({
   drawerHeaderIcon: {
     color: '#ffffff',
   },
+  drawerCenterContent: {
+    // marginBottom value is the height of the drawerFooter
+    marginBottom: 91,
+    overflow: 'auto',
+  },
   drawerFooter: {
     position: 'absolute',
     width: '100%',
     bottom: 0,
+    backgroundColor: '#ffffff',
   },
   drawerFooterContainer: {
     padding: theme.spacing(1, 2),
@@ -113,7 +122,9 @@ function ShoppingCartDrawer() {
 
         <Divider />
 
-        <ShoppingCartList />
+        <div className={classes.drawerCenterContent}>
+          <ShoppingCartList />
+        </div>
 
         <div className={classes.drawerFooter}>
           <Divider />

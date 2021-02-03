@@ -1,22 +1,25 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import Divider from '@material-ui/core/Divider';
+
+import ShoppingCartListItem from './ShoppingCartListItem/ShoppingCartListItem';
 
 function ShoppingCartList() {
+  const shoppingCartState = useSelector((state) => state.shoppingCart);
+  const { shoppingCartProducts } = shoppingCartState;
+
   return (
     <List>
-      {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-        <ListItem button key={text}>
-          <ListItemIcon>
-            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-          </ListItemIcon>
-          <ListItemText primary={text} />
-        </ListItem>
+      {shoppingCartProducts.map((shoppingCartProduct, i) => (
+        <div key={`shopping-cart-product-${shoppingCartProduct.id}`}>
+          <ShoppingCartListItem shoppingCartProduct={shoppingCartProduct} />
+
+          {shoppingCartProduct.length !== i + 1 && (
+            <Divider variant="inset" component="li" />
+          )}
+        </div>
       ))}
     </List>
   );
