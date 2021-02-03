@@ -1,8 +1,7 @@
 const types = {
   ADD_PRODUCT: 'shoppingCart/ADD_PRODUCT',
   // REMOVE_PRODUCT: 'shoppingCart/REMOVE_PRODUCT',
-  ADD_PRODUCT_QUANTITY: 'shoppingCart/ADD_PRODUCT_QUANTITY',
-  // REMOVE_PRODUCT_QUANTITY: 'shoppingCart/REMOVE_PRODUCT_QUANTITY',
+  SET_PRODUCT_QUANTITY: 'shoppingCart/SET_PRODUCT_QUANTITY',
   // REMOVE_ALL_PRODUCTS: 'shoppingCart/REMOVE_ALL_PRODUCTS',
   SET_TOTAL_PRODUCTS_QUANTITY: 'shoppingCart/SET_TOTAL_PRODUCTS_QUANTITY',
   SET_TOTAL_PRODUCTS_PRICE: 'shoppingCart/SET_TOTAL_PRODUCTS_PRICE',
@@ -29,7 +28,7 @@ const reducer = (state = initialState, action) => {
           },
         ],
       };
-    case types.ADD_PRODUCT_QUANTITY:
+    case types.SET_PRODUCT_QUANTITY:
       return {
         ...state,
         shoppingCartProducts: action.products,
@@ -37,14 +36,18 @@ const reducer = (state = initialState, action) => {
     case types.SET_TOTAL_PRODUCTS_QUANTITY:
       return {
         ...state,
-        totalProductsQuantity: state.totalProductsQuantity + 1,
+        totalProductsQuantity: action.isAdd
+          ? state.totalProductsQuantity + 1
+          : state.totalProductsQuantity - 1,
       };
     case types.SET_TOTAL_PRODUCTS_PRICE:
       return {
         ...state,
         totalProductsPrice:
           Math.ceil(
-            (state.totalProductsPrice + action.currentProductPrice) * 100,
+            (action.isAdd
+              ? state.totalProductsPrice + action.currentProductPrice
+              : state.totalProductsPrice - action.currentProductPrice) * 100,
           ) / 100,
       };
     case types.SET_IS_DRAWER_OPEN:
@@ -62,24 +65,47 @@ export const addProduct = (product) => ({
   product,
 });
 
-export const addProductQuantity = (products) => ({
-  type: types.ADD_PRODUCT_QUANTITY,
+export const setProductQuantity = (products) => ({
+  type: types.SET_PRODUCT_QUANTITY,
   products,
 });
 
-export const setTotalProductsQuantity = () => ({
+export const setTotalProductsQuantity = ({ isAdd }) => ({
   type: types.SET_TOTAL_PRODUCTS_QUANTITY,
+  isAdd,
 });
 
-export const setTotalProductsPrice = (currentProductPrice) => ({
+export const setTotalProductsPrice = ({ currentProductPrice, isAdd }) => ({
   type: types.SET_TOTAL_PRODUCTS_PRICE,
   currentProductPrice,
+  isAdd,
 });
 
 export const setIsDrawerOpen = (isDrawerOpen) => ({
   type: types.SET_IS_DRAWER_OPEN,
   isDrawerOpen,
 });
+
+export const changeProductQuantity = ({ productId, productPrice, isAdd }) => (
+  dispatch,
+  getState,
+) => {
+  const { shoppingCartProducts } = getState().shoppingCart;
+
+  const modifiedProducts = shoppingCartProducts.map((product) => {
+    if (product.id === productId) {
+      return {
+        ...product,
+        quantity: isAdd ? product.quantity + 1 : product.quantity - 1,
+      };
+    }
+    return product;
+  });
+
+  dispatch(setProductQuantity(modifiedProducts));
+  dispatch(setTotalProductsQuantity({ isAdd }));
+  dispatch(setTotalProductsPrice({ currentProductPrice: productPrice, isAdd }));
+};
 
 export const addProductToShoppingCart = (productId) => (dispatch, getState) => {
   const { catalogProducts } = getState().products;
@@ -95,24 +121,24 @@ export const addProductToShoppingCart = (productId) => (dispatch, getState) => {
   );
 
   if (isProductInShoppingCart) {
-    const modifiedProducts = shoppingCartProducts.map((product) => {
-      if (product.id === parsedProductId) {
-        return {
-          ...product,
-          quantity: product.quantity + 1,
-        };
-      }
-
-      return product;
-    });
-
-    dispatch(addProductQuantity(modifiedProducts));
+    dispatch(
+      changeProductQuantity({
+        productId: parsedProductId,
+        productPrice: selectedProduct.price,
+        isAdd: true,
+      }),
+    );
   } else {
     dispatch(addProduct(selectedProduct));
+    dispatch(setTotalProductsQuantity({ isAdd: true }));
+    dispatch(
+      setTotalProductsPrice({
+        currentProductPrice: selectedProduct.price,
+        isAdd: true,
+      }),
+    );
   }
 
-  dispatch(setTotalProductsQuantity());
-  dispatch(setTotalProductsPrice(selectedProduct.price));
   dispatch(setIsDrawerOpen(true));
 };
 

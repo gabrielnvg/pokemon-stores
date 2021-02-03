@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
 import ListItem from '@material-ui/core/ListItem';
@@ -11,6 +12,8 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import DeleteIcon from '@material-ui/icons/Delete';
+
+import { changeProductQuantity } from '../../../../../redux/modules/shoppingCart';
 
 const useStyles = makeStyles(() => ({
   avatarContainer: {
@@ -39,6 +42,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 function ShoppingCartListItem({ shoppingCartProduct }) {
+  const dispatch = useDispatch();
   const classes = useStyles();
 
   return (
@@ -74,6 +78,15 @@ function ShoppingCartListItem({ shoppingCartProduct }) {
         <IconButton
           color="secondary"
           disabled={shoppingCartProduct.quantity <= 1}
+          onClick={() =>
+            dispatch(
+              changeProductQuantity({
+                productId: shoppingCartProduct.id,
+                productPrice: shoppingCartProduct.price,
+                isAdd: false,
+              }),
+            )
+          }
         >
           <RemoveIcon />
         </IconButton>
@@ -82,7 +95,18 @@ function ShoppingCartListItem({ shoppingCartProduct }) {
           {shoppingCartProduct.quantity}
         </div>
 
-        <IconButton color="primary">
+        <IconButton
+          color="primary"
+          onClick={() =>
+            dispatch(
+              changeProductQuantity({
+                productId: shoppingCartProduct.id,
+                productPrice: shoppingCartProduct.price,
+                isAdd: true,
+              }),
+            )
+          }
+        >
           <AddIcon />
         </IconButton>
       </div>
