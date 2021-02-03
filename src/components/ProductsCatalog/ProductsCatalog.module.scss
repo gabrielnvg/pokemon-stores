@@ -2,11 +2,11 @@
   margin-top: 20px;
   margin-bottom: 60px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex-wrap: wrap;
 
   .products-cards {
-    margin: 10px
+    margin: 10px;
   }
 }
