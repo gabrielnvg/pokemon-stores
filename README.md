@@ -51,4 +51,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ---
 
 ## Observations
-- Since there no product stock quantity information comes from the JSON, the product stock value in the app is inifnite.
+- Since no product stock quantity information comes from the JSON, each product stock value is inifnite in the app.
