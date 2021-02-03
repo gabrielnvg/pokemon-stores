@@ -94,7 +94,7 @@ function getClientEnvironment(publicUrl) {
         FAST_REFRESH: process.env.FAST_REFRESH !== 'false',
         // Store variables
         STORE: { ...store },
-        STORE_TITLE: `Pokémon Store - ${store.name}`,
+        STORE_TITLE: store.title,
         STORE_DESCRIPTION: store.description,
         STORE_THEME_COLOR: store.color,
       },
