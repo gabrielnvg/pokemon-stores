@@ -1,8 +1,7 @@
 const types = {
   ADD_PRODUCT: 'shoppingCart/ADD_PRODUCT',
-  // REMOVE_PRODUCT: 'shoppingCart/REMOVE_PRODUCT',
+  REMOVE_PRODUCT: 'shoppingCart/REMOVE_PRODUCT',
   SET_PRODUCT_QUANTITY: 'shoppingCart/SET_PRODUCT_QUANTITY',
-  // REMOVE_ALL_PRODUCTS: 'shoppingCart/REMOVE_ALL_PRODUCTS',
   SET_TOTAL_PRODUCTS_QUANTITY: 'shoppingCart/SET_TOTAL_PRODUCTS_QUANTITY',
   SET_TOTAL_PRODUCTS_PRICE: 'shoppingCart/SET_TOTAL_PRODUCTS_PRICE',
   SET_IS_DRAWER_OPEN: 'shoppingCart/SET_IS_DRAWER_OPEN',
@@ -28,6 +27,11 @@ const reducer = (state = initialState, action) => {
           },
         ],
       };
+    case types.REMOVE_PRODUCT:
+      return {
+        ...state,
+        shoppingCartProducts: action.modifiedProducts,
+      };
     case types.SET_PRODUCT_QUANTITY:
       return {
         ...state,
@@ -37,18 +41,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         totalProductsQuantity: action.isAdd
-          ? state.totalProductsQuantity + 1
-          : state.totalProductsQuantity - 1,
+          ? state.totalProductsQuantity + action.totalProductsQuantity
+          : state.totalProductsQuantity - action.totalProductsQuantity,
       };
     case types.SET_TOTAL_PRODUCTS_PRICE:
       return {
         ...state,
         totalProductsPrice:
-          Math.ceil(
-            (action.isAdd
+          action.isAdd
               ? state.totalProductsPrice + action.currentProductPrice
-              : state.totalProductsPrice - action.currentProductPrice) * 100,
-          ) / 100,
+              : state.totalProductsPrice - action.currentProductPrice,
       };
     case types.SET_IS_DRAWER_OPEN:
       return {
@@ -65,13 +67,22 @@ export const addProduct = (product) => ({
   product,
 });
 
+export const removeProduct = (modifiedProducts) => ({
+  type: types.REMOVE_PRODUCT,
+  modifiedProducts,
+});
+
 export const setProductQuantity = (products) => ({
   type: types.SET_PRODUCT_QUANTITY,
   products,
 });
 
-export const setTotalProductsQuantity = ({ isAdd }) => ({
+export const setTotalProductsQuantity = ({
+  totalProductsQuantity = 1,
+  isAdd,
+}) => ({
   type: types.SET_TOTAL_PRODUCTS_QUANTITY,
+  totalProductsQuantity,
   isAdd,
 });
 
@@ -140,6 +151,31 @@ export const addProductToShoppingCart = (productId) => (dispatch, getState) => {
   }
 
   dispatch(setIsDrawerOpen(true));
+};
+
+export const removeProductFromShoppingCart = (selectedProduct) => (
+  dispatch,
+  getState,
+) => {
+  const { shoppingCartProducts } = getState().shoppingCart;
+
+  const modifiedProducts = shoppingCartProducts.filter(
+    (product) => product.id !== selectedProduct.id,
+  );
+
+  dispatch(removeProduct(modifiedProducts));
+  dispatch(
+    setTotalProductsQuantity({
+      totalProductsQuantity: selectedProduct.quantity,
+      isAdd: false,
+    }),
+  );
+  dispatch(
+    setTotalProductsPrice({
+      currentProductPrice: selectedProduct.price * selectedProduct.quantity,
+      isAdd: false,
+    }),
+  );
 };
 
 export const toggleShoppingCartDrawer = (isOpen, event) => (dispatch) => {

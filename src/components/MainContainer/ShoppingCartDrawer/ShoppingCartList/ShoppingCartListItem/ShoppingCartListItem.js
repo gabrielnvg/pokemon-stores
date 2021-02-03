@@ -13,7 +13,10 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-import { changeProductQuantity } from '../../../../../redux/modules/shoppingCart';
+import {
+  changeProductQuantity,
+  removeProductFromShoppingCart,
+} from '../../../../../redux/modules/shoppingCart';
 
 const useStyles = makeStyles(() => ({
   avatarContainer: {
@@ -112,7 +115,13 @@ function ShoppingCartListItem({ shoppingCartProduct }) {
       </div>
 
       <ListItemSecondaryAction>
-        <IconButton edge="end" aria-label="delete">
+        <IconButton
+          edge="end"
+          aria-label="delete"
+          onClick={() =>
+            dispatch(removeProductFromShoppingCart(shoppingCartProduct))
+          }
+        >
           <DeleteIcon />
         </IconButton>
       </ListItemSecondaryAction>
