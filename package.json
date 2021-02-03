@@ -86,7 +86,8 @@
     "deploy:fire": "npm run build:fire && surge ./build https://gabrielnvg-pokemon-store-fire.surge.sh",
     "deploy:water": "npm run build:water && surge ./build https://gabrielnvg-pokemon-store-water.surge.sh",
     "deploy:all": "npm run deploy:grass && npm run deploy:fire && npm run deploy:water",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [
