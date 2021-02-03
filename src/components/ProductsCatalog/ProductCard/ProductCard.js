@@ -9,7 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import { addPruductToShoppingCart } from '../../../redux/modules/shoppingCart';
+import { addProductToShoppingCart } from '../../../redux/modules/shoppingCart';
 
 const useStyles = makeStyles({
   root: {
@@ -77,7 +77,7 @@ function ProductCard({ product }) {
         size="large"
         value={product.id}
         onClick={(event) =>
-          dispatch(addPruductToShoppingCart(event.currentTarget.value))
+          dispatch(addProductToShoppingCart(event.currentTarget.value))
         }
       >
         Add to cart

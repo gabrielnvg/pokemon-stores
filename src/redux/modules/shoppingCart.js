@@ -81,7 +81,7 @@ export const setIsDrawerOpen = (isDrawerOpen) => ({
   isDrawerOpen,
 });
 
-export const addPruductToShoppingCart = (productId) => (dispatch, getState) => {
+export const addProductToShoppingCart = (productId) => (dispatch, getState) => {
   const { catalogProducts } = getState().products;
   const { shoppingCartProducts } = getState().shoppingCart;
   const parsedProductId = parseInt(productId, 10);
