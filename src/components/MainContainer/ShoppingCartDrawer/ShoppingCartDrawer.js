@@ -161,7 +161,12 @@ function ShoppingCartDrawer() {
                   body: (
                     <div className={classes.purchaseConfirmationDialogBody}>
                       <div>Your cashback of 10%:</div>
-                      <strong>${(totalProductsPrice * 0.1).toFixed(2)}</strong>
+                      <strong>
+                        $
+                        {(
+                          Math.floor(totalProductsPrice * 0.1 * 100) / 100
+                        ).toFixed(2)}
+                      </strong>
                     </div>
                   ),
                   hasCancelButton: false,
