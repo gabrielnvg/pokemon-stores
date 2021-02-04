@@ -3,12 +3,12 @@ describe('Buys three of the same Pokémon', () => {
   it('adds a Pokémon to shopping cart, increases its quantity to "3" and clicks on purchase', () => {
     cy.visit('/');
 
-    // Wait 10s for JSON, then clicks on first "add to cart" button
+    // Waits 10s for JSON, then clicks on first "add to cart" button
     cy.xpath('//*[@id="root"]/div[3]/div/div/div[1]/div/div/div/button', {
       timeout: 10000,
     }).click();
 
-    // Clicks on increase quantity
+    // Clicks on increase quantity button
     cy.xpath(
       '/html/body/div[2]/div[3]/div/div[2]/ul/div/li[1]/div[1]/div[3]/button[2]',
       {
@@ -16,7 +16,7 @@ describe('Buys three of the same Pokémon', () => {
       },
     ).click();
 
-    // Clicks on increase quantity
+    // Clicks on increase quantity button
     cy.xpath(
       '/html/body/div[2]/div[3]/div/div[2]/ul/div/li[1]/div[1]/div[3]/button[2]',
       {
