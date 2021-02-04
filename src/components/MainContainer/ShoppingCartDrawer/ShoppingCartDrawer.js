@@ -22,8 +22,8 @@ import ShoppingCartList from './ShoppingCartList/ShoppingCartList';
 const useStyles = makeStyles((theme) => ({
   drawerContainer: {
     position: 'relative',
-    width: '100vw',
-    minHeight: '100vh',
+    width: 295,
+    height: '100vh',
     display: 'flex',
     flexDirection: 'column',
     overflow: 'hidden',
