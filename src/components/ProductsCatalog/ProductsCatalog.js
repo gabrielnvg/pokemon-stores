@@ -1,15 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FadeIn from 'react-fade-in';
-import styles from './ProductsCatalog.module.scss';
+import { makeStyles } from '@material-ui/core/styles';
 
 import ProductCard from './ProductCard/ProductCard';
 
+const useStyles = makeStyles({
+  productsCatalog: {
+    marginTop: 20,
+    marginBottom: 60,
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+  },
+  productsCards: {
+    margin: 10,
+  },
+});
+
 function ProductsCatalog({ products }) {
+  const classes = useStyles();
+
   return (
-    <div className={styles['products-catalog']}>
+    <div className={classes.productsCatalog}>
       {products.map((product) => (
-        <div key={`product-${product.id}`} className={styles['products-cards']}>
+        <div key={`product-${product.id}`} className={classes.productsCards}>
           <FadeIn>
             <ProductCard product={product} />
           </FadeIn>
