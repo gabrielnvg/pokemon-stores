@@ -7,7 +7,7 @@ import { closeDialog } from './redux/modules/purchaseConfirmationDialog';
 import MainContainer from './components/MainContainer/MainContainer';
 import FetchError from './components/FetchError/FetchError';
 import FetchLoading from './components/FetchLoading/FetchLoading';
-import ProductsCatalog from './components/ProductsCatalog/ProductsCatalog';
+import ProductsCatalog from './components/MainContainer/ProductsCatalog/ProductsCatalog';
 import EmptySearch from './components/EmptySearch/EmptySearch';
 import DialogContainer from './components/DialogContainer/DialogContainer';
 
