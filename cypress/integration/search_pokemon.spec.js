@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
-describe('Searchs for Pokémon with "a" on its name', () => {
-  it('searchs for Pokémon with "a" on its name, from the search input, then adds it to shopping cart and clicks on the purchase button', () => {
+describe('Searches for Pokémon with "a" on its name', () => {
+  it('searches for Pokémon with "a" on its name, from the search input, then adds it to shopping cart and clicks on the purchase button', () => {
     cy.visit('/');
 
-    // Waits 10s for JSON, then searchs for Pokémon with "a" on its name
+    // Waits 10s for JSON, then searches for Pokémon with "a" on its name
     cy.xpath('//*[@id="root"]/div[1]/header/div/div/div/div[2]/input', {
       timeout: 10000,
     }).type('a');
