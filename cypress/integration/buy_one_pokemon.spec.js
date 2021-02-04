@@ -3,7 +3,7 @@ describe('Buys one Pokémon', () => {
   it('adds a Pokémon to shopping cart and clicks on the purchase button', () => {
     cy.visit('/');
 
-    // Wait 10s for JSON, then clicks on first "add to cart" button
+    // Waits 10s for JSON, then clicks on first "add to cart" button
     cy.xpath('//*[@id="root"]/div[3]/div/div/div[1]/div/div/div/button', {
       timeout: 10000,
     }).click();
