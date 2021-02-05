@@ -157,7 +157,7 @@ function ShoppingCartDrawer() {
             variant="contained"
             size="large"
             disabled={!shoppingCartProducts.length}
-            onClick={() => {
+            onClick={(event) => {
               dispatch(
                 setDialogState({
                   isOpen: false,
@@ -181,6 +181,7 @@ function ShoppingCartDrawer() {
               );
               dispatch(emptyShoppingCart());
               dispatch(openDialog());
+              dispatch(toggleShoppingCartDrawer(false, event));
             }}
           >
             Purchase
