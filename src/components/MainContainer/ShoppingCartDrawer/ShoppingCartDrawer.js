@@ -89,6 +89,10 @@ const useStyles = makeStyles((theme) => ({
   purchaseConfirmationDialogBody: {
     textAlign: 'center',
   },
+  cashbackValue: {
+    marginTop: 5,
+    fontSize: 20,
+  },
 }));
 
 function ShoppingCartDrawer() {
@@ -161,12 +165,14 @@ function ShoppingCartDrawer() {
                   body: (
                     <div className={classes.purchaseConfirmationDialogBody}>
                       <div>Your cashback of 10%:</div>
-                      <strong>
-                        $
-                        {(
-                          Math.floor(totalProductsPrice * 0.1 * 100) / 100
-                        ).toFixed(2)}
-                      </strong>
+                      <div className={classes.cashbackValue}>
+                        <strong>
+                          $
+                          {(
+                            Math.floor(totalProductsPrice * 0.1 * 100) / 100
+                          ).toFixed(2)}
+                        </strong>
+                      </div>
                     </div>
                   ),
                   hasCancelButton: false,
