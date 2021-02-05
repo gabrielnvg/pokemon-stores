@@ -2,6 +2,7 @@ const types = {
   ADD_PRODUCT: 'shoppingCart/ADD_PRODUCT',
   REMOVE_PRODUCT: 'shoppingCart/REMOVE_PRODUCT',
   REMOVE_ALL_PRODUCTS: 'shoppingCart/REMOVE_ALL_PRODUCTS',
+  SET_SHOPPING_CART: 'shoppingCart/SET_SHOPPING_CART',
   SET_PRODUCT_QUANTITY: 'shoppingCart/SET_PRODUCT_QUANTITY',
   SET_TOTAL_PRODUCTS_QUANTITY: 'shoppingCart/SET_TOTAL_PRODUCTS_QUANTITY',
   SET_TOTAL_PRODUCTS_PRICE: 'shoppingCart/SET_TOTAL_PRODUCTS_PRICE',
@@ -37,6 +38,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         shoppingCartProducts: [],
+      };
+    case types.SET_SHOPPING_CART:
+      return {
+        ...state,
+        shoppingCartProducts: action.shoppingCartProducts,
       };
     case types.SET_PRODUCT_QUANTITY:
       return {
@@ -79,6 +85,11 @@ export const removeProduct = (modifiedProducts) => ({
 
 export const removeAllProducts = () => ({
   type: types.REMOVE_ALL_PRODUCTS,
+});
+
+export const setShoppingCart = (shoppingCartProducts) => ({
+  type: types.SET_SHOPPING_CART,
+  shoppingCartProducts,
 });
 
 export const setProductQuantity = (products) => ({
