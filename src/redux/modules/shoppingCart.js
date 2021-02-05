@@ -4,8 +4,8 @@ const types = {
   REMOVE_ALL_PRODUCTS: 'shoppingCart/REMOVE_ALL_PRODUCTS',
   SET_SHOPPING_CART: 'shoppingCart/SET_SHOPPING_CART',
   SET_PRODUCT_QUANTITY: 'shoppingCart/SET_PRODUCT_QUANTITY',
-  SET_TOTAL_PRODUCTS_QUANTITY: 'shoppingCart/SET_TOTAL_PRODUCTS_QUANTITY',
-  SET_TOTAL_PRODUCTS_PRICE: 'shoppingCart/SET_TOTAL_PRODUCTS_PRICE',
+  CHANGE_TOTAL_PRODUCTS_QUANTITY: 'shoppingCart/CHANGE_TOTAL_PRODUCTS_QUANTITY',
+  CHANGE_TOTAL_PRODUCTS_PRICE: 'shoppingCart/CHANGE_TOTAL_PRODUCTS_PRICE',
   SET_IS_DRAWER_OPEN: 'shoppingCart/SET_IS_DRAWER_OPEN',
 };
 
@@ -49,14 +49,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         shoppingCartProducts: action.products,
       };
-    case types.SET_TOTAL_PRODUCTS_QUANTITY:
+    case types.CHANGE_TOTAL_PRODUCTS_QUANTITY:
       return {
         ...state,
         totalProductsQuantity: action.isAdd
           ? state.totalProductsQuantity + action.totalProductsQuantity
           : state.totalProductsQuantity - action.totalProductsQuantity,
       };
-    case types.SET_TOTAL_PRODUCTS_PRICE:
+    case types.CHANGE_TOTAL_PRODUCTS_PRICE:
       return {
         ...state,
         totalProductsPrice: action.isAdd
@@ -97,17 +97,17 @@ export const setProductQuantity = (products) => ({
   products,
 });
 
-export const setTotalProductsQuantity = ({
+export const changeTotalProductsQuantity = ({
   totalProductsQuantity = 1,
   isAdd,
 }) => ({
-  type: types.SET_TOTAL_PRODUCTS_QUANTITY,
+  type: types.CHANGE_TOTAL_PRODUCTS_QUANTITY,
   totalProductsQuantity,
   isAdd,
 });
 
-export const setTotalProductsPrice = ({ currentProductPrice, isAdd }) => ({
-  type: types.SET_TOTAL_PRODUCTS_PRICE,
+export const changeTotalProductsPrice = ({ currentProductPrice, isAdd }) => ({
+  type: types.CHANGE_TOTAL_PRODUCTS_PRICE,
   currentProductPrice,
   isAdd,
 });
@@ -134,8 +134,8 @@ export const changeProductQuantity = ({ productId, productPrice, isAdd }) => (
   });
 
   dispatch(setProductQuantity(modifiedProducts));
-  dispatch(setTotalProductsQuantity({ isAdd }));
-  dispatch(setTotalProductsPrice({ currentProductPrice: productPrice, isAdd }));
+  dispatch(changeTotalProductsQuantity({ isAdd }));
+  dispatch(changeTotalProductsPrice({ currentProductPrice: productPrice, isAdd }));
 };
 
 export const addProductToShoppingCart = (productId) => (dispatch, getState) => {
@@ -161,9 +161,9 @@ export const addProductToShoppingCart = (productId) => (dispatch, getState) => {
     );
   } else {
     dispatch(addProduct(selectedProduct));
-    dispatch(setTotalProductsQuantity({ isAdd: true }));
+    dispatch(changeTotalProductsQuantity({ isAdd: true }));
     dispatch(
-      setTotalProductsPrice({
+      changeTotalProductsPrice({
         currentProductPrice: selectedProduct.price,
         isAdd: true,
       }),
@@ -185,13 +185,13 @@ export const removeProductFromShoppingCart = (selectedProduct) => (
 
   dispatch(removeProduct(modifiedProducts));
   dispatch(
-    setTotalProductsQuantity({
+    changeTotalProductsQuantity({
       totalProductsQuantity: selectedProduct.quantity,
       isAdd: false,
     }),
   );
   dispatch(
-    setTotalProductsPrice({
+    changeTotalProductsPrice({
       currentProductPrice: selectedProduct.price * selectedProduct.quantity,
       isAdd: false,
     }),
@@ -214,13 +214,13 @@ export const emptyShoppingCart = () => (dispatch, getState) => {
 
   dispatch(removeAllProducts());
   dispatch(
-    setTotalProductsQuantity({
+    changeTotalProductsQuantity({
       totalProductsQuantity,
       isAdd: false,
     }),
   );
   dispatch(
-    setTotalProductsPrice({
+    changeTotalProductsPrice({
       currentProductPrice: totalProductsPrice,
       isAdd: false,
     }),
