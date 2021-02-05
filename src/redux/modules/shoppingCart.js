@@ -1,3 +1,5 @@
+import storage, { storageKeys } from '../../assets/js/interfaces/storage';
+
 const types = {
   ADD_PRODUCT: 'shoppingCart/ADD_PRODUCT',
   REMOVE_PRODUCT: 'shoppingCart/REMOVE_PRODUCT',
@@ -117,6 +119,18 @@ export const setIsDrawerOpen = (isDrawerOpen) => ({
   isDrawerOpen,
 });
 
+export const getShoppingCartLocally = () =>
+  storage.get(storageKeys.shoppingCart);
+
+export const storeShoppingCartLocally = () => (_, getState) => {
+  const { shoppingCartProducts } = getState().shoppingCart;
+
+  storage.set(storageKeys.shoppingCart, shoppingCartProducts);
+};
+
+export const removeShoppingCartLocally = () =>
+  storage.remove(storageKeys.shoppingCart);
+
 export const changeProductQuantity = ({ productId, productPrice, isAdd }) => (
   dispatch,
   getState,
@@ -135,7 +149,10 @@ export const changeProductQuantity = ({ productId, productPrice, isAdd }) => (
 
   dispatch(setProductQuantity(modifiedProducts));
   dispatch(changeTotalProductsQuantity({ isAdd }));
-  dispatch(changeTotalProductsPrice({ currentProductPrice: productPrice, isAdd }));
+  dispatch(
+    changeTotalProductsPrice({ currentProductPrice: productPrice, isAdd }),
+  );
+  dispatch(storeShoppingCartLocally());
 };
 
 export const addProductToShoppingCart = (productId) => (dispatch, getState) => {
@@ -170,6 +187,7 @@ export const addProductToShoppingCart = (productId) => (dispatch, getState) => {
     );
   }
 
+  dispatch(storeShoppingCartLocally());
   dispatch(setIsDrawerOpen(true));
 };
 
@@ -196,6 +214,7 @@ export const removeProductFromShoppingCart = (selectedProduct) => (
       isAdd: false,
     }),
   );
+  dispatch(storeShoppingCartLocally());
 };
 
 export const toggleShoppingCartDrawer = (isOpen, event) => (dispatch) => {
@@ -213,6 +232,7 @@ export const emptyShoppingCart = () => (dispatch, getState) => {
   const { totalProductsQuantity, totalProductsPrice } = getState().shoppingCart;
 
   dispatch(removeAllProducts());
+  removeShoppingCartLocally();
   dispatch(
     changeTotalProductsQuantity({
       totalProductsQuantity,
@@ -225,6 +245,34 @@ export const emptyShoppingCart = () => (dispatch, getState) => {
       isAdd: false,
     }),
   );
+};
+
+export const setShoppingCartFromStorage = () => (dispatch) => {
+  const storageShoppingCart = getShoppingCartLocally();
+
+  if (storageShoppingCart) {
+    dispatch(setShoppingCart(storageShoppingCart));
+
+    let totalProductsQuantity = 0;
+    let totalProductsPrice = 0;
+
+    storageShoppingCart.map((product) => {
+      totalProductsQuantity += product.quantity;
+      totalProductsPrice += product.price * product.quantity;
+      return false;
+    });
+
+    [...Array(totalProductsQuantity)].forEach(() =>
+      dispatch(changeTotalProductsQuantity({ isAdd: true })),
+    );
+
+    dispatch(
+      changeTotalProductsPrice({
+        currentProductPrice: totalProductsPrice,
+        isAdd: true,
+      }),
+    );
+  }
 };
 
 export default reducer;

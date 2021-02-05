@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import FadeIn from 'react-fade-in';
 import { fetchProducts } from './redux/modules/products';
+import { setShoppingCartFromStorage } from './redux/modules/shoppingCart';
 import { closeDialog } from './redux/modules/purchaseConfirmationDialog';
 
 import MainContainer from './components/MainContainer/MainContainer';
@@ -21,6 +22,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchProducts());
+    dispatch(setShoppingCartFromStorage());
   }, []);
 
   return (

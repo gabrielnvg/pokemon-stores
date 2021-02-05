@@ -20,7 +20,7 @@ const storage = {
 };
 
 export const storageKeys = {
-  shoppingCart: 'shopping-cart',
+  shoppingCart: `${process.env.STORE.name.toLowerCase()}.shopping-cart`,
 };
 
 export default storage;
