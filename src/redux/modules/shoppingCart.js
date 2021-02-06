@@ -1,4 +1,4 @@
-import storage, { storageKeys } from '../../assets/js/interfaces/storage';
+import storage, { storageKeys } from '../../assets/js/services/storage';
 
 const types = {
   ADD_PRODUCT: 'shoppingCart/ADD_PRODUCT',

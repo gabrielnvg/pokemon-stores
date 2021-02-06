@@ -3,7 +3,7 @@ const isImplemented = typeof localStorage !== 'undefined';
 const isKeyStored = (key) =>
   Boolean(isImplemented && localStorage.getItem(key));
 
-const storage = {
+const storageService = {
   set: (key, value) =>
     isImplemented && localStorage.setItem(key, JSON.stringify(value)),
 
@@ -23,4 +23,4 @@ export const storageKeys = {
   shoppingCart: `${process.env.STORE.name.toLowerCase()}.shopping-cart`,
 };
 
-export default storage;
+export default storageService;
