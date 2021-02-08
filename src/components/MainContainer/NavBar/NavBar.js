@@ -71,7 +71,11 @@ function NavBar() {
       <AppBar style={{ backgroundColor: process.env.STORE.color }}>
         <Toolbar>
           <IconButton edge="start" aria-label="logo">
-            <img src="/logo32.png" alt="logo" />
+            <img
+              src="/logo32.png"
+              alt={process.env.STORE.title}
+              title={process.env.STORE.title}
+            />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             {process.env.STORE.name} Pokémon Store
