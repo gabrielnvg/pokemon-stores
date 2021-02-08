@@ -11,14 +11,22 @@ import Typography from '@material-ui/core/Typography';
 
 import { addProductToShoppingCart } from '../../../../redux/modules/shoppingCart';
 
+import placeholderImage from './assets/images/placeholder.png';
+
 const useStyles = makeStyles({
   root: {
     width: 280,
   },
   media: {
+    padding: 2,
     height: 140,
-    backgroundSize: 140,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: process.env.STORE.colorLight,
+  },
+  mediaImage: {
+    height: '100%',
   },
   name: {
     textTransform: 'capitalize',
@@ -47,11 +55,19 @@ function ProductCard({ product }) {
 
   return (
     <Card className={classes.root}>
-      <CardMedia
-        className={classes.media}
-        image={product.mainImageUrl}
-        title={product.name}
-      />
+      <CardMedia className={classes.media}>
+        <img
+          className={classes.mediaImage}
+          src={product.mainImageUrl}
+          alt={product.name}
+          title={product.name}
+          onError={(event) => {
+            const { target } = event;
+            target.onError = null;
+            target.src = placeholderImage;
+          }}
+        />
+      </CardMedia>
       <CardContent>
         <Typography
           className={classes.name}
