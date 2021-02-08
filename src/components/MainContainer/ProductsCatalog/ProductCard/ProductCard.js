@@ -24,9 +24,9 @@ const useStyles = makeStyles({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: process.env.STORE.colorLight,
-  },
-  mediaImage: {
-    height: '100%',
+    '& img': {
+      height: '100%',
+    },
   },
   name: {
     textTransform: 'capitalize',
@@ -57,7 +57,6 @@ function ProductCard({ product }) {
     <Card className={classes.root}>
       <CardMedia className={classes.media}>
         <img
-          className={classes.mediaImage}
           src={product.mainImageUrl}
           alt={product.name}
           title={product.name}
