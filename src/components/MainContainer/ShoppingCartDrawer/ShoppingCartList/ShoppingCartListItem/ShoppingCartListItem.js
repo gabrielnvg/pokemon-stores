@@ -18,10 +18,15 @@ import {
   removeProductFromShoppingCart,
 } from '../../../../../redux/modules/shoppingCart';
 
+import placeholderImage from './assets/images/placeholder.png';
+
 const useStyles = makeStyles(() => ({
   avatarContainer: {
     padding: 2,
     backgroundColor: process.env.STORE.colorLight,
+    '& img': {
+      height: '100%',
+    },
   },
   productInfo: {
     width: '100%',
@@ -55,7 +60,13 @@ function ShoppingCartListItem({ shoppingCartProduct }) {
           className={classes.avatarContainer}
           alt={shoppingCartProduct.name}
           src={shoppingCartProduct.thumbImageUrl}
-        />
+        >
+          <img
+            src={placeholderImage}
+            alt={shoppingCartProduct.name}
+            title={shoppingCartProduct.name}
+          />
+        </Avatar>
       </ListItemAvatar>
 
       <div className={classes.productInfo}>
