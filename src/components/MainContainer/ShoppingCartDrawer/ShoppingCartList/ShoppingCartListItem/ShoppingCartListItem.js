@@ -20,7 +20,7 @@ import {
 
 import placeholderImage from './assets/images/placeholder.png';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   avatarContainer: {
     padding: 2,
     backgroundColor: process.env.STORE.colorLight,
@@ -29,12 +29,18 @@ const useStyles = makeStyles(() => ({
     },
   },
   productInfo: {
-    width: '100%',
+    width: 150,
     paddingRight: 2,
     lineHeight: 1.3,
+    [theme.breakpoints.down('sm')]: {
+      width: 70,
+    },
   },
   productName: {
     textTransform: 'capitalize',
+    overflowX: 'hidden',
+    whiteSpace: 'pre-wrap',
+    textOverflow: 'ellipsis',
   },
   productQuantityContainer: {
     display: 'flex',
