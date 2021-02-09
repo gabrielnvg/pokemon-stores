@@ -104,8 +104,8 @@ function NavBar() {
           <IconButton
             aria-label="open shopping cart drawer"
             color="inherit"
-            onClick={(event) => {
-              dispatch(toggleShoppingCartDrawer(true, event));
+            onClick={() => {
+              dispatch(toggleShoppingCartDrawer(true));
             }}
           >
             <Badge

@@ -217,16 +217,8 @@ export const removeProductFromShoppingCart = (selectedProduct) => (
   dispatch(storeShoppingCartLocally());
 };
 
-export const toggleShoppingCartDrawer = (isOpen, event) => (dispatch) => {
-  if (
-    event.type === 'keydown' &&
-    (event.key === 'Tab' || event.key === 'Shift')
-  ) {
-    return;
-  }
-
+export const toggleShoppingCartDrawer = (isOpen) => (dispatch) =>
   dispatch(setIsDrawerOpen(isOpen));
-};
 
 export const emptyShoppingCart = () => (dispatch, getState) => {
   const { totalProductsQuantity, totalProductsPrice } = getState().shoppingCart;

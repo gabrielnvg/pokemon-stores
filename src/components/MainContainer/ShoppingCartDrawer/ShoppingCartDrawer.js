@@ -110,8 +110,8 @@ function ShoppingCartDrawer() {
     <Drawer
       anchor="right"
       open={isDrawerOpen}
-      onClose={(event) => {
-        dispatch(toggleShoppingCartDrawer(false, event));
+      onClose={() => {
+        dispatch(toggleShoppingCartDrawer(false));
       }}
     >
       <div className={classes.drawerContainer} role="presentation">
@@ -129,8 +129,8 @@ function ShoppingCartDrawer() {
             </span>
           </span>
           <IconButton
-            onClick={(event) => {
-              dispatch(toggleShoppingCartDrawer(false, event));
+            onClick={() => {
+              dispatch(toggleShoppingCartDrawer(false));
             }}
           >
             <ChevronRightIcon className={classes.drawerHeaderIcon} />
@@ -157,7 +157,7 @@ function ShoppingCartDrawer() {
             variant="contained"
             size="large"
             disabled={!shoppingCartProducts.length}
-            onClick={(event) => {
+            onClick={() => {
               dispatch(
                 setDialogState({
                   isOpen: false,
@@ -181,7 +181,7 @@ function ShoppingCartDrawer() {
               );
               dispatch(emptyShoppingCart());
               dispatch(openDialog());
-              dispatch(toggleShoppingCartDrawer(false, event));
+              dispatch(toggleShoppingCartDrawer(false));
             }}
           >
             Purchase
