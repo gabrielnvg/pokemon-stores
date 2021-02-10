@@ -13,6 +13,8 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import DeleteIcon from '@material-ui/icons/Delete';
 
+import breakpoints from '../../../../../assets/makeStyles/breakpoints';
+
 import {
   changeProductQuantity,
   removeProductFromShoppingCart,
@@ -29,11 +31,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   productInfo: {
-    width: 150,
+    width: 70,
     paddingRight: 2,
     lineHeight: 1.3,
-    [theme.breakpoints.down('sm')]: {
-      width: 70,
+    [theme.breakpoints.up(breakpoints.xxs)]: {
+      width: 130,
+    },
+    [theme.breakpoints.up(breakpoints.xs)]: {
+      width: 150,
     },
   },
   productName: {

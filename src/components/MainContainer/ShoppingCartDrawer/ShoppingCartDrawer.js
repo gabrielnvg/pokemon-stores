@@ -8,6 +8,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 
+import breakpoints from '../../../assets/makeStyles/breakpoints';
+
 import {
   toggleShoppingCartDrawer,
   emptyShoppingCart,
@@ -27,29 +29,29 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     overflow: 'hidden',
-    [theme.breakpoints.up(450)]: {
+    [theme.breakpoints.up(breakpoints.xxs)]: {
+      width: 375,
+    },
+    [theme.breakpoints.up(breakpoints.xs)]: {
       width: 400,
     },
   },
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
-    padding: theme.spacing(0, 2),
+    padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: 'space-between',
     backgroundColor: process.env.STORE.color,
-    fontSize: '1.25rem',
-    fontWeight: 500,
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    lineHeight: 1.6,
     letterSpacing: '0.0075em',
     color: '#ffffff',
-    [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(0, 1),
-      fontSize: 'initial',
-      lineHeight: 'initial',
-      fontWeight: 'initial',
+    [theme.breakpoints.up(breakpoints.xs)]: {
+      padding: theme.spacing(0, 2),
+      fontSize: '1.25rem',
+      lineHeight: 1.6,
+      fontWeight: 500,
     },
   },
   drawerHeaderIcon: {
