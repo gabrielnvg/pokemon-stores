@@ -37,7 +37,7 @@ function MainContainer(props) {
         </Box>
       </Container>
 
-      <ScrollTop {...props}>
+      <ScrollTop>
         <Fab
           size="small"
           aria-label="scroll back to top"
