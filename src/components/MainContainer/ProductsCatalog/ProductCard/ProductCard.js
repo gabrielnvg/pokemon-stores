@@ -90,10 +90,7 @@ function ProductCard({ product }) {
         className={classes.button}
         variant="contained"
         size="large"
-        value={product.id}
-        onClick={(event) =>
-          dispatch(addProductToShoppingCart(event.currentTarget.value))
-        }
+        onClick={() => dispatch(addProductToShoppingCart(product.id))}
       >
         Add to cart
       </Button>
