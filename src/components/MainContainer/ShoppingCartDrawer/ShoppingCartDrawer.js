@@ -118,7 +118,7 @@ function ShoppingCartDrawer() {
     >
       <div className={classes.drawerContainer} role="presentation">
         <div className={classes.drawerHeader}>
-          <span className={classes.headerTitleText}>
+          <span>
             Shopping Cart{' '}
             <span>
               (
